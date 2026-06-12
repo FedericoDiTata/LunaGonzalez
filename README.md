@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Luna González — Landing
 
-## Getting Started
+Landing one-scroll para Luna González, coach profesional (coaching individual, de equipos, team building y programa para concesionarias).
 
-First, run the development server:
+> **Estado: Primera entrega — solo estructura.**
+> Textos en lorem ipsum, fotos/videos como placeholders y escala de grises neutra.
+> En la segunda entrega se aplican paleta de marca, contenidos reales y la integración del formulario. Ver [cliente-info.md](cliente-info.md).
+
+## Stack
+
+- Next.js 16 (App Router) + TypeScript
+- Tailwind CSS v4 (tokens de diseño en `app/globals.css`)
+- Framer Motion v12
+- Tipografía de marca: Poppins (títulos) + Inter (texto), vía `next/font`
+
+## Desarrollo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # build de producción
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estructura
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/
+  globals.css        ← tokens (la paleta de la entrega 2 se enchufa acá)
+  layout.tsx         ← fuentes + metadata
+  page.tsx           ← ensambla las secciones
+components/
+  ui/                ← design system (MediaPlaceholder, SectionHeading, motion)
+  sections/          ← las 10 secciones + navbar + footer
+design-spec.md       ← especificación de diseño de la entrega
+cliente-info.md      ← datos de la clienta + pendientes de entrega 2
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Desarrollado por **BrodhIA**.
