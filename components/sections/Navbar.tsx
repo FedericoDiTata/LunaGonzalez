@@ -22,10 +22,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  // Transparente solo sobre el hero; nunca texto invisible sobre fondo claro
-  const isTransparent = !scrolled && !open;
-  const text = isTransparent ? "text-paper" : "text-ink";
-  const textMuted = isTransparent ? "text-paper/75" : "text-muted";
+  // El hero ahora es claro: el navbar es siempre tinta sobre claro;
+  // al scrollear solo gana fondo sólido y hairline inferior.
+  const isFloating = !scrolled && !open;
 
   return (
     <motion.header
@@ -33,22 +32,17 @@ export default function Navbar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        isTransparent
+        isFloating
           ? "bg-transparent"
           : "border-b border-line bg-paper/92 shadow-[0_1px_0_rgba(0,0,0,0.02)] backdrop-blur-md"
       }`}
     >
       <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between px-6">
-        <a
-          href="#inicio"
-          className={`flex items-baseline gap-2.5 transition-colors duration-500 ${text}`}
-        >
+        <a href="#inicio" className="flex items-baseline gap-2.5 text-ink">
           <span className="font-display text-[17px] font-semibold tracking-[-0.01em]">
             Luna González
           </span>
-          <span
-            className={`text-[10px] font-medium uppercase tracking-[0.26em] ${textMuted}`}
-          >
+          <span className="text-[10px] font-medium uppercase tracking-[0.26em] text-muted">
             Coach
           </span>
         </a>
@@ -59,32 +53,18 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className={`group relative text-[13.5px] font-medium tracking-wide transition-colors duration-500 ${textMuted} ${
-                isTransparent ? "hover:text-paper" : "hover:text-ink"
-              }`}
+              className="group relative text-[13.5px] font-medium tracking-wide text-muted transition-colors duration-300 hover:text-ink"
             >
               {l.label}
-              <span
-                className={`absolute -bottom-1 left-0 block h-px w-full origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${
-                  isTransparent ? "bg-paper" : "bg-ink"
-                }`}
-              />
+              <span className="absolute -bottom-1 left-0 block h-px w-full origin-left scale-x-0 bg-ink transition-transform duration-300 group-hover:scale-x-100" />
             </a>
           ))}
           <a
             href="#agendar"
-            className={`group flex items-center gap-2.5 rounded-md py-2 pl-5 pr-2 text-[13.5px] font-medium transition-all duration-500 active:scale-[0.98] ${
-              isTransparent
-                ? "bg-paper text-ink hover:bg-white"
-                : "bg-ink text-paper hover:bg-[#2e2e2c]"
-            }`}
+            className="group flex items-center gap-2.5 bg-ink py-2 pl-5 pr-2 text-[13.5px] font-medium text-paper transition-colors duration-300 hover:bg-[#2e2e2c] active:scale-[0.98]"
           >
             Agendar reunión
-            <span
-              className={`flex h-6 w-6 items-center justify-center rounded-[4px] transition-transform duration-300 ease-(--ease-out-expo) group-hover:translate-x-0.5 ${
-                isTransparent ? "bg-ink/8" : "bg-paper/12"
-              }`}
-            >
+            <span className="flex h-6 w-6 items-center justify-center bg-paper/12 transition-transform duration-300 ease-(--ease-out-expo) group-hover:translate-x-0.5">
               <svg
                 width="11"
                 height="11"
@@ -108,19 +88,19 @@ export default function Navbar() {
           className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
         >
           <span
-            className={`block h-px w-5 transition-all duration-300 ${
-              isTransparent ? "bg-paper" : "bg-ink"
-            } ${open ? "translate-y-[6px] rotate-45" : ""}`}
+            className={`block h-px w-5 bg-ink transition-all duration-300 ${
+              open ? "translate-y-[6px] rotate-45" : ""
+            }`}
           />
           <span
-            className={`block h-px w-5 transition-all duration-300 ${
-              isTransparent ? "bg-paper" : "bg-ink"
-            } ${open ? "opacity-0" : ""}`}
+            className={`block h-px w-5 bg-ink transition-all duration-300 ${
+              open ? "opacity-0" : ""
+            }`}
           />
           <span
-            className={`block h-px w-5 transition-all duration-300 ${
-              isTransparent ? "bg-paper" : "bg-ink"
-            } ${open ? "-translate-y-[6px] -rotate-45" : ""}`}
+            className={`block h-px w-5 bg-ink transition-all duration-300 ${
+              open ? "-translate-y-[6px] -rotate-45" : ""
+            }`}
           />
         </button>
       </div>
@@ -155,7 +135,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-                className="mt-4 rounded-md bg-ink px-5 py-3.5 text-center text-[15px] font-medium text-paper"
+                className="mt-4 bg-ink px-5 py-3.5 text-center text-[15px] font-medium text-paper"
               >
                 Agendar reunión
               </motion.a>
