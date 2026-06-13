@@ -3,8 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import InstagramIcon from "@/components/ui/InstagramIcon";
-import SectionHeading from "@/components/ui/SectionHeading";
-import { EASE, VIEWPORT_BOTTOM, field } from "@/components/ui/motion";
+import { EASE, fadeUp, field, VIEWPORT_BOTTOM, wipeUp } from "@/components/ui/motion";
 
 const SERVICIOS = [
   "Coaching individual",
@@ -24,55 +23,56 @@ export default function Agendar() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="agendar" className="bg-band py-28 text-paper md:py-36">
+    <section id="agendar" className="bg-band py-24 text-paper md:py-32">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-16 lg:grid-cols-12 lg:gap-0">
-          {/* Columna editorial */}
-          <div className="lg:col-span-5">
-            <SectionHeading
-              dark
-              index="10"
-              label="Agendar"
-              title="Empecemos por una conversación"
-            />
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={VIEWPORT_BOTTOM}
-              transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
-              className="mt-7 max-w-sm text-[15px] leading-relaxed text-paper/60"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </motion.p>
+        {/* Segundo y último uso de type-xl en la página */}
+        <div className="overflow-y-clip">
+          <motion.h2
+            variants={wipeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT_BOTTOM}
+            className="type-xl"
+          >
+            Hablemos.
+          </motion.h2>
+        </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={VIEWPORT_BOTTOM}
-              transition={{ duration: 0.7, ease: EASE, delay: 0.25 }}
-              className="mt-12 space-y-5"
-            >
-              <div className="flex items-center gap-4">
-                <span className="h-px w-8 bg-paper/20" aria-hidden />
-                <span className="text-[11px] uppercase tracking-[0.22em] text-paper/45">
-                  Respuesta en —— hs hábiles
-                </span>
-              </div>
+        <div className="mt-16 grid gap-y-14 md:mt-24 lg:grid-cols-12 lg:gap-x-6">
+          {/* Meta: filas planas con hairlines, sin cajas */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT_BOTTOM}
+            className="lg:col-span-4"
+          >
+            <p className="max-w-sm text-[15px] leading-relaxed text-paper/60">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore.
+            </p>
+
+            <div className="mt-10 divide-y divide-white/10 border-y border-white/10">
+              <p className="py-4 text-[13px] tracking-[0.04em] text-paper/70">
+                Respuesta en —— hs hábiles
+              </p>
               <a
                 href="https://instagram.com/lunagonzalezff"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 border border-paper/20 px-5 py-3 text-[13.5px] font-medium text-paper/85 transition-colors duration-300 hover:border-paper/50 hover:bg-paper/5"
+                className="group flex items-center gap-3 py-4 text-[13px] tracking-[0.04em] text-paper/70 transition-colors duration-300 hover:text-paper"
               >
-                <InstagramIcon size={17} />
+                <InstagramIcon size={15} />
                 @lunagonzalezff
               </a>
-            </motion.div>
-          </div>
+              <p className="py-4 text-[13px] tracking-[0.04em] text-paper/70">
+                hola@——.com
+              </p>
+            </div>
+          </motion.div>
 
           {/* Formulario */}
-          <div className="lg:col-span-6 lg:col-start-7">
+          <div className="lg:col-span-7 lg:col-start-6">
             <AnimatePresence mode="wait">
               {submitted ? (
                 <motion.div
@@ -92,7 +92,7 @@ export default function Agendar() {
                       damping: 20,
                       delay: 0.1,
                     }}
-                    className="flex h-14 w-14 items-center justify-center rounded-full border border-paper/30"
+                    className="flex h-14 w-14 items-center justify-center border border-paper/30"
                   >
                     <svg
                       width="22"
@@ -211,24 +211,10 @@ export default function Agendar() {
                   <motion.div variants={field} custom={5}>
                     <motion.button
                       type="submit"
-                      whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="group flex w-full items-center justify-center gap-3 rounded-md bg-paper py-3.5 pl-6 pr-2.5 text-[14px] font-medium text-ink sm:w-auto"
+                      className="w-full bg-paper px-8 py-3.5 text-[14px] font-medium text-ink transition-colors duration-300 hover:bg-white sm:w-auto"
                     >
                       Agendar reunión
-                      <span className="flex h-7 w-7 items-center justify-center rounded-[5px] bg-ink/8 transition-transform duration-300 ease-(--ease-out-expo) group-hover:-translate-y-px group-hover:translate-x-0.5">
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.4"
-                          aria-hidden
-                        >
-                          <path d="M2 10 10 2M4 2h6v6" />
-                        </svg>
-                      </span>
                     </motion.button>
                   </motion.div>
                 </motion.form>
