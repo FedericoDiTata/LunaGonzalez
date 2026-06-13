@@ -25,18 +25,18 @@ export default function Agendar() {
   return (
     <section id="agendar" className="bg-band py-24 text-paper md:py-32">
       <div className="mx-auto max-w-6xl px-6">
-        {/* Segundo y último uso de type-xl en la página */}
-        <div className="overflow-y-clip">
-          <motion.h2
-            variants={wipeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT_BOTTOM}
-            className="type-xl"
-          >
+        {/* Segundo y último uso de type-xl. El observador va en el wrapper:
+            el h2 arranca clippeado por el overflow y no dispararía. */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_BOTTOM}
+          className="overflow-y-clip"
+        >
+          <motion.h2 variants={wipeUp} className="type-xl">
             Hablemos.
           </motion.h2>
-        </div>
+        </motion.div>
 
         <div className="mt-16 grid gap-y-14 md:mt-24 lg:grid-cols-12 lg:gap-x-6">
           {/* Meta: filas planas con hairlines, sin cajas */}

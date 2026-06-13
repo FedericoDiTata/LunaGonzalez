@@ -78,8 +78,8 @@ export default function MediaPlaceholder({
 
   return (
     <div
-      className={`relative overflow-hidden ${
-        fill ? "absolute inset-0" : ""
+      className={`overflow-hidden ${
+        fill ? "absolute inset-0" : "relative"
       } ${
         dark
           ? "bg-[#1d1d1b] text-white/45 border border-white/10"

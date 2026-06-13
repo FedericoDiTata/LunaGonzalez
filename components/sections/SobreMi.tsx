@@ -26,17 +26,20 @@ export default function SobreMi() {
       <div className="relative z-10 mx-auto grid max-w-6xl gap-x-6 px-6 pt-12 lg:grid-cols-12 lg:py-32">
         <div className="lg:col-span-7 lg:col-start-6">
           {/* El nombre cruza 1–2 columnas sobre la foto (sistema del hero, espejado) */}
-          <div className="overflow-y-clip">
+          {/* El observador va en el wrapper: el h2 arranca clippeado y no dispararía */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+            className="overflow-y-clip"
+          >
             <motion.h2
               variants={wipeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={VIEWPORT}
               className="type-l text-ink lg:-ml-[35%] lg:whitespace-nowrap"
             >
               Luna González
             </motion.h2>
-          </div>
+          </motion.div>
 
           <motion.div
             variants={fadeUp}
