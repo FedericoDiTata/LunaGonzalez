@@ -61,14 +61,3 @@ export const field: Variants = {
     transition: { duration: 0.45, ease: EASE, delay: i * 0.08 },
   }),
 };
-
-/** Pills / chips en cascada */
-export const pill: Variants = {
-  hidden: { opacity: 0, x: -12, scale: 0.94 },
-  visible: (i: number) => ({
-    opacity: 1,
-    x: 0,
-    scale: 1,
-    transition: { duration: 0.4, ease: EASE, delay: 0.35 + i * 0.07 },
-  }),
-};
