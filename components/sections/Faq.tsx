@@ -47,7 +47,7 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-paper py-28 md:py-36">
+    <section id="faq" className="bg-paper pb-16 pt-12 md:pb-16 md:pt-14">
       <div className="mx-auto grid max-w-6xl gap-x-6 gap-y-12 px-6 lg:grid-cols-12">
         {/* Columna funcional: título y salida directa al contacto */}
         <motion.div
