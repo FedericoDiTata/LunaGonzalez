@@ -23,7 +23,7 @@ export default function Agendar() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="agendar" className="bg-band py-24 text-paper md:py-32">
+    <section id="agendar" className="bg-band pb-20 pt-28 text-paper md:pb-22 md:pt-36">
       <div className="mx-auto max-w-6xl px-6">
         {/* Segundo y último uso de type-xl. El observador va en el wrapper:
             el h2 arranca clippeado por el overflow y no dispararía. */}
@@ -38,7 +38,7 @@ export default function Agendar() {
           </motion.h2>
         </motion.div>
 
-        <div className="mt-16 grid gap-y-14 md:mt-24 lg:grid-cols-12 lg:gap-x-6">
+        <div className="mt-10 grid gap-y-14 md:mt-12 lg:grid-cols-12 lg:gap-x-6">
           {/* Meta: filas planas con hairlines, sin cajas */}
           <motion.div
             variants={fadeUp}
