@@ -104,7 +104,7 @@ export default function MediaPlaceholder({
       {!quiet && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
           <span
-            className={`flex h-11 w-11 items-center justify-center rounded-full border ${
+            className={`flex h-11 w-11 items-center justify-center border ${
               dark ? "border-white/20" : "border-ink/15"
             }`}
           >

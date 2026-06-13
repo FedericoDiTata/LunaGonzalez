@@ -20,6 +20,43 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/*
+ * Roles tipográficos del rediseño.
+ * type-xl se usa EXACTAMENTE 2 veces en toda la página: headline del Hero
+ * y "Hablemos." de Agendar. La jerarquía sale del salto brusco entre roles.
+ */
+@utility type-xl {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 6.5vw, 6.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+
+@utility type-l {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 3.6vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+@utility type-m {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 1.9vw, 1.8rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+
+/*
+ * Alinea el contenido de un bloque full-bleed con el borde izquierdo
+ * del container estándar (max-w-6xl px-6 = 72rem + 1.5rem de padding).
+ */
+@utility pl-edge {
+  padding-left: max(1.5rem, calc((100% - 72rem) / 2 + 1.5rem));
+}
+
 html {
   scroll-behavior: smooth;
 }
