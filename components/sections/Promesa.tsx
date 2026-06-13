@@ -1,65 +1,77 @@
 "use client";
 
 import { motion } from "framer-motion";
-import SectionHeading from "@/components/ui/SectionHeading";
-import { stagger, staggerItem, VIEWPORT } from "@/components/ui/motion";
+import { fadeUp, stagger, staggerItem, VIEWPORT, wipeUp } from "@/components/ui/motion";
 
-type Resultado = {
-  label: string;
-  frase: string;
-};
+/**
+ * Manifiesto con cortes duros. El énfasis es posicional (la palabra clave
+ * va sola en su propia línea, indentada profundo), nunca en itálica.
+ */
+const LINEAS = [
+  { texto: "Lorem ipsum dolor sit amet", indent: false },
+  { texto: "consectetur adipiscing elit sed do", indent: false },
+  { texto: "eiusmod.", indent: true },
+];
 
-const RESULTADOS: Resultado[] = [
-  {
-    label: "Resultado 01",
-    frase: "Lorem ipsum dolor sit amet consectetur",
-  },
-  {
-    label: "Resultado 02",
-    frase: "Sed do eiusmod tempor incididunt ut labore",
-  },
-  {
-    label: "Resultado 03",
-    frase: "Ut enim ad minim veniam quis nostrud",
-  },
+const RESULTADOS = [
+  "Lorem ipsum dolor sit amet consectetur",
+  "Sed do eiusmod tempor incididunt ut labore",
+  "Ut enim ad minim veniam quis nostrud",
 ];
 
 export default function Promesa() {
   return (
-    <section id="promesa" className="bg-band py-32 text-paper md:py-40">
-      <div className="mx-auto max-w-4xl px-6">
-        <SectionHeading
-          index="04"
-          label="La promesa"
-          align="center"
-          dark
-          title={
-            <>
-              Lorem ipsum dolor sit amet, consectetur{" "}
-              <em className="italic font-normal">adipiscing elit</em> sed do
-              eiusmod tempor incididunt
-            </>
-          }
-        />
-
-        <motion.div
-          variants={stagger(0.12, 0.15)}
+    <section id="promesa" className="bg-band py-36 text-paper md:py-44">
+      <div className="mx-auto grid max-w-6xl gap-x-6 px-6 lg:grid-cols-12">
+        <motion.p
+          variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
-          className="mt-16 grid divide-y divide-white/10 md:mt-20 md:grid-cols-3 md:divide-x md:divide-y-0"
+          className="text-[11px] font-medium uppercase tracking-[0.24em] text-paper/40 lg:col-span-12"
         >
-          {RESULTADOS.map((resultado) => (
+          La promesa
+        </motion.p>
+
+        {/* Manifiesto: escalera irregular, cols 1–8 */}
+        <motion.h2
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+          transition={{ staggerChildren: 0.12, delayChildren: 0.1 }}
+          className="type-l mt-10 lg:col-span-8"
+        >
+          {LINEAS.map((linea) => (
+            <span key={linea.texto} className="block overflow-y-clip">
+              <motion.span
+                variants={wipeUp}
+                className={`block ${linea.indent ? "ml-10 lg:ml-[33%]" : ""}`}
+              >
+                {linea.texto}
+              </motion.span>
+            </span>
+          ))}
+        </motion.h2>
+
+        {/* Resultados: contrapeso abajo a la derecha, apilados */}
+        <motion.div
+          variants={stagger(0.14, 0.25)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+          className="mt-16 lg:col-span-4 lg:col-start-9 lg:mt-24"
+        >
+          {RESULTADOS.map((r, i) => (
             <motion.div
-              key={resultado.label}
+              key={r}
               variants={staggerItem}
-              className="px-8 py-6 text-center"
+              className="border-t border-white/10 py-6"
             >
-              <p className="text-[10px] uppercase tracking-[0.24em] text-paper/40">
-                {resultado.label}
+              <p className="text-[11px] tracking-[0.18em] text-paper/40">
+                {`0${i + 1}`}
               </p>
-              <p className="mt-3 text-[15px] leading-relaxed text-paper/80">
-                {resultado.frase}
+              <p className="mt-2 max-w-[34ch] text-[15px] leading-relaxed text-paper/80">
+                {r}
               </p>
             </motion.div>
           ))}
