@@ -38,7 +38,7 @@ const itemDerecha: Variants = {
 
 export default function ParaQuien() {
   return (
-    <section id="para-quien" className="relative bg-paper py-28 md:py-36">
+    <section id="para-quien" className="relative bg-paper pb-24 pt-12 md:pb-30 md:pt-16">
       {/* Panel gris sangrado al borde derecho — la ruptura de la sección */}
       <div
         aria-hidden
