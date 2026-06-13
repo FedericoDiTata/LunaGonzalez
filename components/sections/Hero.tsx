@@ -35,7 +35,7 @@ export default function Hero() {
         </motion.p>
 
         <div className="mt-7 overflow-y-clip">
-          <motion.h1 variants={wipeUp} className="type-xl text-ink lg:cross-right">
+          <motion.h1 variants={wipeUp} className="type-hero text-ink lg:cross-right">
             {HEADLINE}
           </motion.h1>
         </div>

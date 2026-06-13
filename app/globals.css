@@ -30,13 +30,27 @@
 
 /*
  * Roles tipográficos del rediseño.
- * type-xl se usa EXACTAMENTE 2 veces en toda la página: headline del Hero
- * y "Hablemos." de Agendar. La jerarquía sale del salto brusco entre roles.
+ * type-xl es el tipo más grande de la página y se reserva para "Hablemos."
+ * (Agendar) — el clímax de cierre. El hero usa type-hero (más chico) para
+ * resolver en ~1 viewport; así "Hablemos." queda como el momento mayor.
  */
 @utility type-xl {
   font-family: var(--font-display);
   font-size: clamp(3.25rem, 6.5vw, 6.75rem);
   line-height: 0.98;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+
+/*
+ * Headline del Hero: más chico que type-xl para que la frase entre en ~3
+ * líneas y headline + subtítulo + CTAs resuelvan en ~1 viewport (incluso en
+ * laptops bajos), con la foto llenando la derecha.
+ */
+@utility type-hero {
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 4.6vw, 4.2rem);
+  line-height: 1.02;
   letter-spacing: -0.03em;
   font-weight: 500;
 }
