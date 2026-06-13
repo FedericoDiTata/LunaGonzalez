@@ -66,57 +66,98 @@ export default function Servicios() {
         </motion.p>
       </div>
 
-      {/* Tabla editorial: filas full-bleed, sin cards ni iconos */}
+      {/* Tarjetas asimétricas: una destacada (mayor escala) + dos menores
+          apiladas. Esquinas rectas, hairlines, sin iconos ni bullets "+". */}
       <motion.div
         variants={stagger(0.12, 0.1)}
         initial="hidden"
         whileInView="visible"
         viewport={VIEWPORT}
-        className="mt-12 md:mt-14"
+        className="mt-12 grid gap-4 px-6 md:mt-14 lg:mx-auto lg:max-w-6xl lg:grid-cols-12"
       >
-        {SERVICIOS.map((s, i) => (
-          <motion.article
-            key={s.name}
-            variants={staggerItem}
-            className={`border-t border-line transition-colors duration-300 hover:bg-fill-soft ${
-              i === SERVICIOS.length - 1 ? "border-b" : ""
-            }`}
-          >
-            <div className="mx-auto grid max-w-6xl gap-x-6 gap-y-6 px-6 py-10 lg:grid-cols-12 lg:py-12">
-              <h3 className="type-m text-ink lg:col-span-5">{s.name}</h3>
+        {/* Destacada */}
+        <motion.article
+          variants={staggerItem}
+          className="flex flex-col self-start border border-line bg-surface p-8 transition-colors duration-300 hover:border-ink/20 md:p-10 lg:col-span-7"
+        >
+          <span className="text-[11px] tracking-[0.18em] text-muted">01</span>
+          <h3 className="mt-5 font-display text-2xl font-medium tracking-[-0.01em] text-ink md:text-[1.7rem]">
+            {SERVICIOS[0].name}
+          </h3>
+          <p className="mt-4 max-w-md text-[14.5px] leading-relaxed text-muted">
+            {SERVICIOS[0].desc}
+          </p>
 
-              <p className="text-[14px] leading-relaxed text-muted lg:col-span-3">
+          <div className="mt-8">
+            <p className="text-[10.5px] font-medium uppercase tracking-[0.2em] text-muted">
+              Incluye
+            </p>
+            <ul className="mt-3 space-y-1.5 text-[14px] leading-relaxed text-ink/75">
+              {SERVICIOS[0].incluye.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-auto flex items-baseline justify-between gap-4 border-t border-line pt-6">
+            <p className="flex items-baseline gap-2">
+              <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
+                Desde
+              </span>
+              <span className="font-display text-xl text-ink">$ ——</span>
+              <span className="text-[12px] text-muted">/ sesión</span>
+            </p>
+            <a
+              href="#agendar"
+              className="relative text-[13px] font-medium text-ink after:absolute after:-bottom-0.5 after:left-0 after:block after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-ink after:transition-transform after:duration-300 hover:after:scale-x-100"
+            >
+              Agendar
+            </a>
+          </div>
+        </motion.article>
+
+        {/* Dos menores apiladas */}
+        <motion.div
+          variants={staggerItem}
+          className="flex flex-col gap-4 lg:col-span-5"
+        >
+          {SERVICIOS.slice(1).map((s, i) => (
+            <article
+              key={s.name}
+              className="flex flex-col border border-line bg-surface p-6 transition-colors duration-300 hover:border-ink/20"
+            >
+              <span className="text-[11px] tracking-[0.18em] text-muted">
+                {`0${i + 2}`}
+              </span>
+              <h3 className="mt-3 font-display text-lg font-medium text-ink">
+                {s.name}
+              </h3>
+              <p className="mt-2.5 max-w-sm text-[13.5px] leading-relaxed text-muted">
                 {s.desc}
               </p>
-
-              <ul className="space-y-1.5 text-[13px] leading-relaxed text-ink/70 lg:col-span-2">
+              <ul className="mt-4 space-y-1 text-[13px] leading-relaxed text-ink/70">
                 {s.incluye.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
 
-              <div className="flex items-baseline justify-between gap-4 lg:col-span-2 lg:flex-col lg:items-end lg:justify-start lg:gap-3 lg:text-right">
-                <p className="flex items-baseline gap-2">
-                  <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
+              <div className="mt-auto flex items-baseline justify-between gap-3 border-t border-line pt-4">
+                <p className="flex items-baseline gap-1.5">
+                  <span className="text-[10.5px] font-medium uppercase tracking-[0.16em] text-muted">
                     Desde
                   </span>
-                  <span className="font-display text-lg text-ink">$ ——</span>
-                  <span className="text-[12px] text-muted">/ sesión</span>
+                  <span className="font-display text-base text-ink">$ ——</span>
                 </p>
                 <a
                   href="#agendar"
-                  className="group relative text-[13px] font-medium text-ink"
+                  className="relative text-[12.5px] font-medium text-ink after:absolute after:-bottom-0.5 after:left-0 after:block after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-ink after:transition-transform after:duration-300 hover:after:scale-x-100"
                 >
                   Agendar
-                  <span
-                    aria-hidden
-                    className="absolute -bottom-0.5 left-0 block h-px w-full origin-left scale-x-0 bg-ink transition-transform duration-300 group-hover:scale-x-100"
-                  />
                 </a>
               </div>
-            </div>
-          </motion.article>
-        ))}
+            </article>
+          ))}
+        </motion.div>
       </motion.div>
 
       {/* Banda destacada full-bleed, split 7/5 — el destaque es por escala */}
