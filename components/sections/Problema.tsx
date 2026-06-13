@@ -62,7 +62,7 @@ export default function Problema() {
                   {/* Numeral gigante claro: ancla liviana en el margen, contra
                       la frase sólida en ink. Gris claro SÓLIDO (sin text-stroke,
                       que renderiza inconsistente entre navegadores). */}
-                  <span className="shrink-0 font-display font-medium leading-[0.8] tracking-[-0.02em] text-ink/15 [font-size:clamp(3.25rem,5.5vw,5rem)] [font-variant-numeric:tabular-nums] lg:-ml-4">
+                  <span className="shrink-0 font-display font-medium leading-[0.8] tracking-[-0.02em] text-ink/35 [font-size:clamp(3.25rem,5.5vw,5rem)] [font-variant-numeric:tabular-nums] lg:-ml-4">
                     {`0${i + 1}`}
                   </span>
                   <p className="type-l text-ink/85 lg:pt-3">{frase}</p>
