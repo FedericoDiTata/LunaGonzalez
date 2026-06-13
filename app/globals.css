@@ -18,6 +18,14 @@
   --font-body: var(--font-inter), system-ui, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /*
+   * Tope del cruce texto-sobre-foto: cuánto invade el texto la foto como
+   * MÁXIMO, a cualquier ancho. Garantiza que sea un roce y no un choque.
+   * Lo consumen las utilities cross-right / cross-left (sistema compartido
+   * Hero + Sobre mí). Cada sección declara su propio --edge-w.
+   */
+  --edge-cap: 4.5rem;
 }
 
 /*
@@ -55,6 +63,30 @@
  */
 @utility pl-edge {
   padding-left: max(1.5rem, calc((100% - 72rem) / 2 + 1.5rem));
+}
+
+/*
+ * Cruce texto-sobre-foto (usar en lg+). La foto está anclada a un borde del
+ * viewport con ancho --edge-w; --edge-cap topea cuánto cruza el texto.
+ * Mismo valor de --edge-w que el de la foto → la relación se mantiene a
+ * todos los anchos y nunca pasa de roce a choque.
+ */
+
+/* Foto a la derecha: heading nace en el borde izq del container; su borde
+   derecho llega como máximo a (borde interior de la foto + --edge-cap). */
+@utility cross-right {
+  max-width: calc(
+    100vw - var(--edge-w) + var(--edge-cap) -
+      max(1.5rem, (100vw - 72rem) / 2 + 1.5rem)
+  );
+}
+
+/* Foto a la izquierda: heading (hijo directo del container) se corre con
+   margin-left hasta quedar --edge-cap adentro del borde interior de la foto. */
+@utility cross-left {
+  margin-left: calc(
+    var(--edge-w) - var(--edge-cap) - max(1.5rem, (100vw - 72rem) / 2 + 1.5rem)
+  );
 }
 
 html {

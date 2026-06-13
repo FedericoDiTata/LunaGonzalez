@@ -14,6 +14,9 @@ type Props = {
   dark?: boolean;
   /** Oculta el texto (para usos decorativos muy chicos) */
   quiet?: boolean;
+  /** Posición vertical del label. "end" lo manda al fondo (fuera del
+   *  camino del texto que cruza sobre la foto en Hero / Sobre mí). */
+  align?: "center" | "end";
   className?: string;
 };
 
@@ -63,6 +66,7 @@ export default function MediaPlaceholder({
   fill = false,
   dark = false,
   quiet = false,
+  align = "center",
   className = "",
 }: Props) {
   const style: CSSProperties = {};
@@ -102,7 +106,11 @@ export default function MediaPlaceholder({
       <span className={`absolute bottom-3 right-3 h-3 w-3 border-b border-r ${tick}`} aria-hidden />
 
       {!quiet && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
+        <div
+          className={`absolute inset-0 flex flex-col items-center gap-3 px-6 text-center ${
+            align === "end" ? "justify-end pb-10" : "justify-center"
+          }`}
+        >
           <span
             className={`flex h-11 w-11 items-center justify-center border ${
               dark ? "border-white/20" : "border-ink/15"

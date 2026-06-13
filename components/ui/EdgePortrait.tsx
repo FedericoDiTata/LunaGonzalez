@@ -7,8 +7,6 @@ import { EASE, VIEWPORT } from "./motion";
 type Props = {
   /** Borde del viewport al que sangra la foto en desktop */
   side: "left" | "right";
-  /** Ancho desktop, ej. "lg:w-[44vw]" */
-  widthClass: string;
   label: string;
   kind?: "foto" | "video";
   /** Aspect ratio cuando la foto pasa a flujo normal en mobile */
@@ -20,14 +18,16 @@ type Props = {
  * Sistema compartido texto-sobre-foto (Hero y Sobre mí).
  *
  * Mecanismo: en lg+ la foto es un bloque absoluto anclado a un borde del
- * viewport, a alto completo de la sección. El contenido vive en el container
- * con `relative z-10` y el título cruza el borde de la foto entre 1 y 2
- * columnas (por desborde de línea o margen negativo), siempre en ink.
- * En mobile el overlap se apaga: la foto entra al flujo con aspect fijo.
+ * viewport, a alto completo de la sección, con ancho = --edge-w (declarado
+ * por la sección). El contenido vive en el container con `relative z-10` y
+ * el heading cruza el borde de la foto usando las utilities cross-right /
+ * cross-left, que leen el MISMO --edge-w y topean el cruce con --edge-cap.
+ * Así la foto y el texto comparten una sola fuente de verdad y el roce no se
+ * vuelve choque a ningún ancho. El label va al fondo (align="end") para no
+ * quedar bajo el texto que cruza. En mobile el overlap se apaga.
  */
 export default function EdgePortrait({
   side,
-  widthClass,
   label,
   kind = "foto",
   mobileAspectClass = "aspect-[3/4]",
@@ -48,11 +48,11 @@ export default function EdgePortrait({
       initial="hidden"
       whileInView="visible"
       viewport={VIEWPORT}
-      className={`relative w-full ${mobileAspectClass} lg:absolute lg:inset-y-0 lg:aspect-auto ${
+      className={`relative w-full ${mobileAspectClass} lg:absolute lg:inset-y-0 lg:aspect-auto lg:w-[var(--edge-w)] ${
         side === "right" ? "lg:right-0" : "lg:left-0"
-      } ${widthClass} ${className}`}
+      } ${className}`}
     >
-      <MediaPlaceholder fill kind={kind} label={label} />
+      <MediaPlaceholder fill align="end" kind={kind} label={label} />
     </motion.div>
   );
 }
