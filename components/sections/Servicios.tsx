@@ -43,14 +43,15 @@ const SERVICIOS: Servicio[] = [
 export default function Servicios() {
   return (
     <section id="servicios" className="bg-paper pb-28 pt-14 md:pb-36 md:pt-16">
-      {/* Apertura: tensión izquierda-derecha sobre la misma línea de base */}
-      <div className="mx-auto grid max-w-6xl items-start gap-6 px-6 lg:grid-cols-12">
+      {/* Apertura: título + intro debajo, alineada a la izquierda (más
+          legible para la presentación que la tensión a la derecha) */}
+      <div className="mx-auto max-w-6xl px-6">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
-          className="type-m text-ink lg:col-span-3"
+          className="type-m text-ink"
         >
           Servicios
         </motion.h2>
@@ -59,7 +60,7 @@ export default function Servicios() {
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
-          className="max-w-sm text-[15px] leading-relaxed text-muted lg:col-span-4 lg:col-start-9"
+          className="mt-4 max-w-md text-[15px] leading-relaxed text-muted"
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore.
