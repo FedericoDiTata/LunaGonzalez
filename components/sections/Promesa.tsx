@@ -8,9 +8,9 @@ import { fadeUp, stagger, staggerItem, VIEWPORT, wipeUp } from "@/components/ui/
  * va sola en su propia línea, indentada profundo), nunca en itálica.
  */
 const LINEAS = [
-  { texto: "Lorem ipsum dolor sit amet", indent: false },
-  { texto: "consectetur adipiscing elit sed do", indent: false },
-  { texto: "eiusmod.", indent: true },
+  { texto: "Lorem ipsum dolor", indent: false },
+  { texto: "sit amet consectetur", indent: false },
+  { texto: "adipiscing.", indent: true },
 ];
 
 const RESULTADOS = [
@@ -21,7 +21,7 @@ const RESULTADOS = [
 
 export default function Promesa() {
   return (
-    <section id="promesa" className="bg-band py-36 text-paper md:py-44">
+    <section id="promesa" className="bg-band pb-24 pt-16 text-paper md:pb-30 md:pt-20">
       <div className="mx-auto grid max-w-6xl gap-x-6 px-6 lg:grid-cols-12">
         <motion.p
           variants={fadeUp}
@@ -39,7 +39,7 @@ export default function Promesa() {
           whileInView="visible"
           viewport={VIEWPORT}
           transition={{ staggerChildren: 0.12, delayChildren: 0.1 }}
-          className="type-l mt-10 lg:col-span-8"
+          className="type-manifiesto mt-10 lg:col-span-8"
         >
           {LINEAS.map((linea) => (
             <span key={linea.texto} className="block overflow-y-clip">

@@ -58,6 +58,19 @@
 }
 
 /*
+ * Manifiesto de Promesa: ~27% más grande que type-l para que el elemento
+ * LLENE la banda oscura (monumentalidad por relleno, no por aire). Queda por
+ * debajo de type-xl, que sigue exclusivo del Hero y "Hablemos.".
+ */
+@utility type-manifiesto {
+  font-family: var(--font-display);
+  font-size: clamp(2.65rem, 4.6vw, 4.3rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+/*
  * Alinea el contenido de un bloque full-bleed con el borde izquierdo
  * del container estándar (max-w-6xl px-6 = 72rem + 1.5rem de padding).
  */
