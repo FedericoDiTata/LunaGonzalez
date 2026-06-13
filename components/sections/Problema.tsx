@@ -31,7 +31,7 @@ export default function Problema() {
             initial="hidden"
             whileInView="visible"
             viewport={VIEWPORT}
-            className="text-[15px] font-semibold text-ink"
+            className="type-m text-ink"
           >
             ¿Algo de esto te suena?
           </motion.p>
@@ -40,7 +40,7 @@ export default function Problema() {
             initial="hidden"
             whileInView="visible"
             viewport={VIEWPORT}
-            className="mt-4 max-w-sm text-[15px] leading-relaxed text-muted"
+            className="mt-5 max-w-sm text-[15px] leading-relaxed text-muted"
           >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim
