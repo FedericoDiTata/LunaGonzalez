@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-import SectionHeading from "@/components/ui/SectionHeading";
-import { EASE, VIEWPORT, fadeUp } from "@/components/ui/motion";
+import { motion } from "framer-motion";
+import MediaPlaceholder from "@/components/ui/MediaPlaceholder";
+import { fadeUp, stagger, staggerItem, VIEWPORT } from "@/components/ui/motion";
 
 type Paso = {
   title: string;
@@ -12,189 +12,96 @@ type Paso = {
 const PASOS: Paso[] = [
   {
     title: "Reunión inicial",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
+    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.",
   },
   {
     title: "Diagnóstico",
-    body: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    body: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
   },
   {
     title: "Plan de trabajo",
-    body: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+    body: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.",
   },
   {
     title: "Seguimiento",
-    body: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.",
+    body: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.",
   },
 ];
-
-/** Pop del círculo numerado — spring con 2 keyframes, opacity con tween aparte */
-const circle: Variants = {
-  hidden: { opacity: 0, scale: 0 },
-  visible: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 180,
-      damping: 14,
-      delay: 0.3 + i * 0.18,
-      opacity: { duration: 0.35, ease: EASE, delay: 0.3 + i * 0.18 },
-    },
-  }),
-};
-
-/** Texto del paso, en cascada apenas después de su círculo */
-const stepText: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: EASE, delay: 0.45 + i * 0.18 },
-  }),
-};
-
-/** Dibujo de la línea punteada (vía mask para conservar el dasharray 4 6) */
-const drawLine: Variants = {
-  hidden: { pathLength: 0 },
-  visible: {
-    pathLength: 1,
-    transition: { duration: 1.2, delay: 0.4, ease: EASE },
-  },
-};
 
 export default function Metodologia() {
   return (
     <section id="metodologia" className="bg-paper py-28 md:py-36">
-      <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading
-          index="05"
-          label="Cómo trabajamos"
-          title="Un proceso claro, paso a paso"
-          align="center"
-        />
-
-        <div className="relative mt-14 md:mt-20">
-          {/* Línea vertical (solo mobile), pasa por detrás de los círculos */}
-          <span
-            aria-hidden
-            className="absolute bottom-12 left-7 top-7 w-px bg-line md:hidden"
-          />
-
-          {/* Línea SVG punteada (solo desktop) que se dibuja con pathLength.
-              El dash 4 6 vive en la línea visible; el pathLength anima la
-              línea blanca del mask que la revela de izquierda a derecha. */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-[12.5%] top-7 hidden md:block"
-          >
-            <motion.svg
-              initial="hidden"
-              whileInView="visible"
-              viewport={VIEWPORT}
-              className="block h-[2px] w-full"
-              fill="none"
-            >
-              <defs>
-                <mask
-                  id="metodologia-line-mask"
-                  maskUnits="userSpaceOnUse"
-                  x="0"
-                  y="0"
-                  width="100%"
-                  height="2"
-                >
-                  <motion.line
-                    variants={drawLine}
-                    x1="0"
-                    y1="1"
-                    x2="100%"
-                    y2="1"
-                    stroke="#FFFFFF"
-                    strokeWidth="2"
-                  />
-                </mask>
-              </defs>
-              <line
-                x1="0"
-                y1="1"
-                x2="100%"
-                y2="1"
-                stroke="#E6E6E1"
-                strokeWidth="1.5"
-                strokeDasharray="4 6"
-                mask="url(#metodologia-line-mask)"
-              />
-            </motion.svg>
-          </div>
-
-          <div className="grid gap-10 md:grid-cols-4">
-            {PASOS.map((p, i) => (
-              <div
-                key={p.title}
-                className="flex items-start gap-6 md:flex-col md:items-center md:gap-0 md:text-center"
-              >
-                <motion.div
-                  variants={circle}
-                  custom={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={VIEWPORT}
-                  className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-line bg-surface font-display text-[15px] text-ink"
-                >
-                  {`0${i + 1}`}
-                </motion.div>
-
-                <motion.div
-                  variants={stepText}
-                  custom={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={VIEWPORT}
-                  className="pt-1.5 md:pt-0"
-                >
-                  <h3 className="font-display text-base font-medium text-ink md:mt-5">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 text-[13.5px] leading-relaxed text-muted">
-                    {p.body}
-                  </p>
-                </motion.div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Cierre: link con subrayado animado (patrón navbar) */}
+      <div className="mx-auto grid max-w-6xl gap-x-6 gap-y-14 px-6 lg:grid-cols-12">
+        {/* Columna funcional sticky: título, contexto, CTA y el video de Luna */}
         <motion.div
-          variants={fadeUp}
+          variants={stagger(0.1, 0.1)}
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
-          className="mt-16 text-center"
+          className="self-start lg:sticky lg:top-28 lg:col-span-4"
         >
-          <a
+          <motion.h2 variants={fadeUp} className="type-m text-ink">
+            Cómo trabajamos
+          </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            className="mt-5 max-w-xs text-[15px] leading-relaxed text-muted"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore.
+          </motion.p>
+
+          <motion.a
+            variants={fadeUp}
             href="#agendar"
-            className="group relative inline-flex items-center gap-2.5 text-[14px] font-medium text-ink"
+            className="group relative mt-8 inline-block text-[14px] font-medium text-ink"
           >
             Agendar la primera reunión
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.4"
-              className="transition-transform duration-300 ease-(--ease-out-expo) group-hover:translate-x-0.5"
-              aria-hidden
-            >
-              <path d="M2 6h8M6.5 2.5 10 6l-3.5 3.5" />
-            </svg>
             <span
               aria-hidden
-              className="absolute -bottom-1.5 left-0 block h-px w-full origin-left scale-x-0 bg-ink transition-transform duration-300 group-hover:scale-x-100"
+              className="absolute -bottom-1 left-0 block h-px w-full origin-left scale-x-100 bg-ink/30 transition-colors duration-300 group-hover:bg-ink"
             />
-          </a>
+          </motion.a>
+
+          {/* Video movido desde el hero, a tamaño real de la columna */}
+          <motion.div variants={fadeUp} className="mt-12">
+            <MediaPlaceholder
+              kind="video"
+              ratio="16:9"
+              label="Luna explica cómo trabaja — clip 60–90s"
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* Pasos: lista vertical, numerales gigantes colgando al gutter */}
+        <motion.div
+          variants={stagger(0.14, 0.15)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+          className="divide-y divide-line lg:col-span-7 lg:col-start-6"
+        >
+          {PASOS.map((p, i) => (
+            <motion.div
+              key={p.title}
+              variants={staggerItem}
+              className="grid grid-cols-[auto_1fr] gap-x-6 py-10 first:pt-0 md:gap-x-10 lg:first:pt-2"
+            >
+              <span
+                aria-hidden
+                className="type-l w-[2ch] font-display leading-none text-ink/15 lg:-ml-14"
+              >
+                {`0${i + 1}`}
+              </span>
+              <div>
+                <h3 className="text-[17px] font-semibold text-ink">{p.title}</h3>
+                <p className="mt-2.5 max-w-md text-[14.5px] leading-relaxed text-muted">
+                  {p.body}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
