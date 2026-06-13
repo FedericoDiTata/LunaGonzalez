@@ -3,8 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import SectionHeading from "@/components/ui/SectionHeading";
-import { EASE, VIEWPORT_BOTTOM, stagger, staggerItem } from "@/components/ui/motion";
+import { EASE, fadeUp, stagger, staggerItem, VIEWPORT_BOTTOM } from "@/components/ui/motion";
 
 type FaqItem = {
   question: string;
@@ -49,19 +48,39 @@ export default function Faq() {
 
   return (
     <section id="faq" className="bg-paper py-28 md:py-36">
-      <div className="mx-auto max-w-2xl px-6">
-        <SectionHeading
-          index="09"
-          label="Preguntas frecuentes"
-          title="Las dudas de siempre"
-        />
+      <div className="mx-auto grid max-w-6xl gap-x-6 gap-y-12 px-6 lg:grid-cols-12">
+        {/* Columna funcional: título y salida directa al contacto */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_BOTTOM}
+          className="lg:col-span-4"
+        >
+          <h2 className="type-m text-ink">Preguntas frecuentes</h2>
+          <p className="mt-5 max-w-[26ch] text-[14.5px] leading-relaxed text-muted">
+            ¿Tenés otra duda?{" "}
+            <a
+              href="#agendar"
+              className="group relative inline-block font-medium text-ink"
+            >
+              Escribime
+              <span
+                aria-hidden
+                className="absolute -bottom-0.5 left-0 block h-px w-full origin-left scale-x-100 bg-ink/30 transition-colors duration-300 group-hover:bg-ink"
+              />
+            </a>{" "}
+            y te respondo en —— hs hábiles.
+          </p>
+        </motion.div>
 
+        {/* Accordion de hairlines */}
         <motion.div
           variants={stagger(0.07)}
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT_BOTTOM}
-          className="mt-14"
+          className="lg:col-span-7 lg:col-start-6"
         >
           {ITEMS.map((item, i) => {
             const isOpen = open === i;
