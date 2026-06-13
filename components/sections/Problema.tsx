@@ -11,13 +11,6 @@ const DOLORES = [
   "Excepteur sint occaecat cupidatat non proident",
 ];
 
-/**
- * Indentación escalonada por fila, en columnas de grilla (solo lg+).
- * Plan B (indentación fija profunda): OFFSETS = [2, 2, 2, 2, 2].
- */
-const OFFSETS = [0, 0, 0, 0, 0];
-const INDENT = ["lg:col-start-1", "lg:col-start-2", "lg:col-start-3"];
-
 export default function Problema() {
   return (
     <section id="problema" className="bg-paper pb-8 pt-16 md:pt-20">
@@ -61,14 +54,18 @@ export default function Problema() {
             className={`border-b border-line ${i === 0 ? "border-t" : ""}`}
           >
             <div className="mx-auto grid max-w-6xl px-6 lg:grid-cols-12">
-              <div
-                className={`overflow-y-clip py-7 md:py-9 lg:col-span-9 ${INDENT[OFFSETS[i]]}`}
-              >
-                <motion.div variants={wipeUp} className="flex items-baseline gap-6">
-                  <span className="text-[11px] tracking-[0.08em] text-muted">
+              <div className="overflow-y-clip py-7 md:py-9 lg:col-span-11">
+                <motion.div
+                  variants={wipeUp}
+                  className="flex flex-col gap-2 lg:flex-row lg:items-start lg:gap-8"
+                >
+                  {/* Numeral gigante claro: ancla liviana en el margen, contra
+                      la frase sólida en ink. Gris claro SÓLIDO (sin text-stroke,
+                      que renderiza inconsistente entre navegadores). */}
+                  <span className="shrink-0 font-display font-medium leading-[0.8] tracking-[-0.02em] text-ink/15 [font-size:clamp(3.25rem,5.5vw,5rem)] [font-variant-numeric:tabular-nums] lg:-ml-4">
                     {`0${i + 1}`}
                   </span>
-                  <p className="type-l text-ink/85">{frase}</p>
+                  <p className="type-l text-ink/85 lg:pt-3">{frase}</p>
                 </motion.div>
               </div>
             </div>
