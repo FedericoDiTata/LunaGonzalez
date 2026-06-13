@@ -20,18 +20,33 @@ const INDENT = ["lg:col-start-1", "lg:col-start-2", "lg:col-start-3"];
 
 export default function Problema() {
   return (
-    <section id="problema" className="bg-paper pb-28 pt-16 md:pt-20">
-      {/* Jerarquía invertida: el título es mínimo, las frases son lo grande */}
-      <div className="mx-auto max-w-6xl px-6 pb-10">
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT}
-          className="text-[15px] font-semibold text-ink"
-        >
-          ¿Algo de esto te suena?
-        </motion.p>
+    <section id="problema" className="bg-paper pb-8 pt-16 md:pt-20">
+      {/* Jerarquía invertida: título mínimo + setup corto a la izquierda;
+          las frases son lo grande. El setup vive acá arriba (antes vivía
+          flotando abajo-derecha y dejaba la columna izquierda vacía). */}
+      <div className="mx-auto grid max-w-6xl gap-x-6 px-6 pb-12 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+            className="text-[15px] font-semibold text-ink"
+          >
+            ¿Algo de esto te suena?
+          </motion.p>
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+            className="mt-4 max-w-sm text-[15px] leading-relaxed text-muted"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim
+            ad minim veniam quis nostrud.
+          </motion.p>
+        </div>
       </div>
 
       {/* Filas full-bleed: la hairline corre de borde a borde del viewport */}
@@ -59,21 +74,6 @@ export default function Problema() {
             </div>
           </motion.div>
         ))}
-      </div>
-
-      {/* Contexto: bloque posicionado a la derecha, texto alineado a la izquierda */}
-      <div className="mx-auto grid max-w-6xl px-6 lg:grid-cols-12">
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT}
-          className="mt-12 text-[15px] leading-relaxed text-muted lg:col-span-4 lg:col-start-9"
-        >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim
-          ad minim veniam quis nostrud.
-        </motion.p>
       </div>
     </section>
   );

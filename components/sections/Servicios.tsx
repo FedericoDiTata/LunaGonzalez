@@ -42,9 +42,9 @@ const SERVICIOS: Servicio[] = [
 
 export default function Servicios() {
   return (
-    <section id="servicios" className="bg-paper py-28 md:py-36">
+    <section id="servicios" className="bg-paper pb-28 pt-14 md:pb-36 md:pt-16">
       {/* Apertura: tensión izquierda-derecha sobre la misma línea de base */}
-      <div className="mx-auto grid max-w-6xl items-end gap-6 px-6 lg:grid-cols-12">
+      <div className="mx-auto grid max-w-6xl items-start gap-6 px-6 lg:grid-cols-12">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
@@ -72,7 +72,7 @@ export default function Servicios() {
         initial="hidden"
         whileInView="visible"
         viewport={VIEWPORT}
-        className="mt-14 md:mt-20"
+        className="mt-12 md:mt-14"
       >
         {SERVICIOS.map((s, i) => (
           <motion.article
