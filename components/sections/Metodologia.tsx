@@ -30,7 +30,7 @@ const PASOS: Paso[] = [
 
 export default function Metodologia() {
   return (
-    <section id="metodologia" className="bg-paper py-28 md:py-36">
+    <section id="metodologia" className="bg-paper pb-12 pt-14 md:pb-14 md:pt-18">
       <div className="mx-auto grid max-w-6xl gap-x-6 gap-y-14 px-6 lg:grid-cols-12">
         {/* Columna funcional sticky: título, contexto, CTA y el video de Luna */}
         <motion.div
