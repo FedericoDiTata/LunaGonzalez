@@ -15,7 +15,7 @@ const DOLORES = [
  * Indentación escalonada por fila, en columnas de grilla (solo lg+).
  * Plan B (indentación fija profunda): OFFSETS = [2, 2, 2, 2, 2].
  */
-const OFFSETS = [0, 1, 2, 0, 1];
+const OFFSETS = [0, 0, 0, 0, 0];
 const INDENT = ["lg:col-start-1", "lg:col-start-2", "lg:col-start-3"];
 
 export default function Problema() {
