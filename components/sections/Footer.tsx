@@ -82,13 +82,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-start justify-between gap-3 border-t border-line pt-7 sm:flex-row sm:items-center">
+        <div className="mt-14 border-t border-line pt-7">
           <p className="text-[12px] text-muted">
             © {new Date().getFullYear()} Luna González — Coach profesional
-          </p>
-          <p className="text-[12px] text-muted">
-            Sitio desarrollado por{" "}
-            <span className="font-medium text-ink/70">BrodhIA</span>
           </p>
         </div>
       </motion.div>
