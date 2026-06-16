@@ -79,28 +79,27 @@ export default function Servicios() {
         {/* Destacada */}
         <motion.article
           variants={staggerItem}
-          className="flex flex-col self-start border border-line bg-surface p-8 transition-colors duration-300 hover:border-ink/20 md:p-10 lg:col-span-7"
+          className="flex flex-col border border-line bg-surface p-8 transition-colors duration-300 hover:border-ink/20 md:p-12 lg:col-span-7"
         >
-          <span className="text-[11px] tracking-[0.18em] text-muted">01</span>
-          <h3 className="mt-5 font-display text-2xl font-medium tracking-[-0.01em] text-ink md:text-[1.7rem]">
+          <h3 className="font-display text-2xl font-medium tracking-[-0.01em] text-ink md:text-[1.9rem]">
             {SERVICIOS[0].name}
           </h3>
-          <p className="mt-4 max-w-md text-[14.5px] leading-relaxed text-muted">
+          <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted">
             {SERVICIOS[0].desc}
           </p>
 
-          <div className="mt-8">
+          <div className="mt-10">
             <p className="text-[10.5px] font-medium uppercase tracking-[0.2em] text-muted">
               Incluye
             </p>
-            <ul className="mt-3 space-y-1.5 text-[14px] leading-relaxed text-ink/75">
+            <ul className="mt-4 space-y-2.5 text-[14.5px] leading-relaxed text-ink/75">
               {SERVICIOS[0].incluye.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
           </div>
 
-          <div className="mt-auto flex items-baseline justify-between gap-4 border-t border-line pt-6">
+          <div className="mt-auto flex items-baseline justify-between gap-4 border-t border-line pt-8">
             <p className="flex items-baseline gap-2">
               <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
                 Desde
@@ -127,10 +126,7 @@ export default function Servicios() {
               key={s.name}
               className="flex flex-col border border-line bg-surface p-6 transition-colors duration-300 hover:border-ink/20"
             >
-              <span className="text-[11px] tracking-[0.18em] text-muted">
-                {`0${i + 2}`}
-              </span>
-              <h3 className="mt-3 font-display text-lg font-medium text-ink">
+              <h3 className="font-display text-lg font-medium text-ink">
                 {s.name}
               </h3>
               <p className="mt-2.5 max-w-sm text-[13.5px] leading-relaxed text-muted">
